@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+    color: rgb(245, 246, 246);
+}
+body{
+    background-color: rgb(154, 171, 171);
+}
