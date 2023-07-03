@@ -81,3 +81,35 @@ ul {
     margin-left: 3rem;
     
   }
+section.cadastrar{
+    width: 100%;
+    height: 300px;
+    background-color: rgb(114, 118, 118);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+div.card-cadastrar{
+   border: 4px saddlebrown solid;
+    width: 400px;
+    height: 250px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    
+}
+div.card-cadastrar form{
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+.form-cadastrar label{
+    color: #0b0101;
+}
+.form-cadastrar input{
+    margin-bottom: 7px;
+}

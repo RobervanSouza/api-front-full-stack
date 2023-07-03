@@ -12,7 +12,7 @@
 
 <body>
     <header>
-    
+
         <ul>
             <li><a href="/restaurantes/restaurante.html">Restaurante</a></li>
             <li><a href="/hoteis/hotel.html">Hotel</a></li>
@@ -26,8 +26,45 @@
             <li><a href="/celulares/celular.html">Celular</a></li>
         </ul>
     </header>
+
+    <!--    
+        nome: {
+        type: String,
+        required: true,
+    },
+    cidade: {
+        type: String,
+        required: true,
+    },
+    pais: {
+        type: String,
+        required: true,
+    },
+    imageUrl: {
+        type: String,
+        required: true,
+    }, -->
+
     <main>
-        <h1>pagina de cadastro Turismo</h1>
+        <section class="cadastrar">
+            <div class="card-cadastrar">
+                <form class="form-cadastrar"  action="processar-cadastro.php" method="POST">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" id="cidade" name="cidade" required>
+
+                    <label for="pais">País:</label>
+                    <input type="text" id="pais" name="pais" required>
+
+                    <label for="imageUrl">URL da imagem:</label>
+                    <input type="text" id="imageUrl" name="imageUrl" required>
+
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </section>
     </main>
     <script src="/index.js"></script>
 </body>
