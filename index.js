@@ -24,3 +24,5 @@ for (let ativa in routes) {
         break;
     }
 }
+
+
