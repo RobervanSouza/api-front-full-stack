@@ -34,26 +34,54 @@
     <main>
         <section class="cadastrar">
             <div class="card-cadastrar">
-                <form class="form-cadastrar" action="#" method="POST" onsubmit="cadastrarItem(event)">
+                <form class="form-cadastrar" action="#">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required>
+                    <input type="text" id="nome" name="nome" placeholder="  Digite nome do ponto Turístico " class="nome" required>
 
                     <label for="cidade">Cidade:</label>
-                    <input type="text" id="cidade" name="cidade" required>
+                    <input type="text" id="cidade" name="cidade" class="cidade" placeholder="   Digite o nome do Estado/Cidade" required>
 
                     <label for="pais">País:</label>
-                    <input type="text" id="pais" name="pais" required>
+                    <input type="text" id="pais" name="pais" class="pais" placeholder="   Digite o nome do País" required>
 
                     <label for="imageUrl">URL da imagem:</label>
-                    <input type="text" id="imageUrl" name="imageUrl" required>
+                    <input type="text" id="imageUrl" name="imageUrl" class="image" placeholder="   Coloque a url da imagem "  required>
 
                     <button class="button-cadastrar" type="submit">Cadastrar</button>
                 </form>
             </div>
         </section>
 
+ <div class="modal">
+  <div class="modal-content">
+    <h2>Editar Ponto Turístico</h2>
+    <form id="editForm">
+      <div class="form-group">
+        <label for="editNome">Nome:</label>
+        <input type="text" id="editNome" name="editNome" required>
+      </div>
+      <div class="form-group">
+        <label for="editCidade">Cidade:</label>
+        <input type="text" id="editCidade" name="editCidade" required>
+      </div>
+      <div class="form-group">
+        <label for="editPais">País:</label>
+        <input type="text" id="editPais" name="editPais" required>
+      </div>
+      <div class="form-group">
+        <label for="editImageUrl">URL da Imagem:</label>
+        <input type="text" id="editImageUrl" name="editImageUrl" required>
+      </div>
+      <div class="button-group">
+        <button type="submit" class="salvar">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
         <section class="itens-cadastrados">
-            <h2>Itens Cadastrados:</h2>
+          
             <div class="div" >
                 <!-- <div class="card">
                     <h3>Nome: nome do restaurante </h3>
