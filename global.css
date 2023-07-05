@@ -224,6 +224,7 @@ div.card-cadastrar form {
 
 .modal-content h2 {
   margin-top: 0;
+  color: #000;
 }
 
 .form-group {
@@ -233,6 +234,8 @@ div.card-cadastrar form {
 .form-group label {
   display: block;
   margin-bottom: 5px;
+  color: #000;
+
 }
 
 .form-group input {
@@ -259,5 +262,3 @@ div.card-cadastrar form {
 .button-group button:hover {
   background-color: #45a049;
 }
-
-

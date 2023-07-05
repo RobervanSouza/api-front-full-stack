@@ -15,31 +15,32 @@ const fetchTurismo = async () => {
 
 const cadastrar = async (event) => {
     event.preventDefault();
-    
+
     const turismo = {
         nome: nome1.value,
         cidade: cidade1.value,
         imageUrl: imageUrl1.value,
         pais: pais1.value
     };
-  
+
     await fetch(url, {
         method: 'post',
-        headers: { 'Content-Type': 'application/json'}, 
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(turismo)
     });
     todosApi()
-    nome1.value= '',
-    cidade1.value = '',
-    imageUrl1.value = '',
-    pais1.value = ''
+    nome1.value = '',
+        cidade1.value = '',
+        imageUrl1.value = '',
+        pais1.value = ''
 };
 
-const editarTurismo = async ( {_id, nome, cidade, pais, imageUrl} ) => {
+const editarTurismo = async ({ _id, nome, cidade, pais, imageUrl }) => {
+
     await fetch(`https://api-back-kappa.vercel.app/turismo/${_id}`, {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({nome, cidade, pais, imageUrl})
+        body: JSON.stringify({ nome, cidade, pais, imageUrl })
     })
     todosApi();
 
@@ -54,9 +55,9 @@ const deleteturismo = async (_id) => {
 
 }
 
-const restElementos = (tag, innerText = '', innerHTML = '') =>{
+const restElementos = (tag, innerText = '', innerHTML = '') => {
     const elemento = document.createElement(tag);
-    if (innerText){
+    if (innerText) {
         elemento.innerText = innerText;
     }
     if (innerHTML) {
@@ -66,17 +67,22 @@ const restElementos = (tag, innerText = '', innerHTML = '') =>{
 }
 
 
-const createTurismo =  (rest) => {
-    const {_id, nome, cidade, pais, imageUrl } = rest;
+let editId;
+
+
+
+
+const createTurismo = (rest) => {
+    const { _id, nome, cidade, pais, imageUrl } = rest;
     const div = restElementos('div');
     div.className = "card";
-    const titulo = restElementos('h3',`Nome: ${nome}` );
+    const titulo = restElementos('h3', `Nome: ${nome}`);
     const image = restElementos('img', imageUrl);
     image.src = imageUrl;
     const cidade1 = restElementos('p', `Cidade: ${cidade}`);
     const pais1 = restElementos('p', `Pais: ${pais}`);
-    const div1  = restElementos('div');
-    div1.className = 'botao'; 
+    const div1 = restElementos('div');
+    div1.className = 'botao';
 
     const fecharModal = () => {
         const modal = document.querySelector('.modal');
@@ -84,7 +90,7 @@ const createTurismo =  (rest) => {
     };
 
     const editbutton = restElementos('button', '', '<span class="material-symbols-outlined">edit</span > ')
-    
+
     const submit = document.querySelector('#editForm');
 
     submit.addEventListener("submit", (event) => {
@@ -94,10 +100,10 @@ const createTurismo =  (rest) => {
         const cidade = document.querySelector('#editCidade').value;
         const pais = document.querySelector('#editPais').value;
         const imageUrl = document.querySelector('#editImageUrl').value;
-        
-        editarTurismo({_id, nome: nome, cidade: cidade, imageUrl: imageUrl, pais: pais});
+
+        editarTurismo({ _id:editId, nome: nome, cidade: cidade, imageUrl: imageUrl, pais: pais });
         fecharModal()
-        todosApi();
+
     });
 
     const openModal = () => {
@@ -105,24 +111,23 @@ const createTurismo =  (rest) => {
         modal.style.display = 'block';
     };
 
+    
     editbutton.addEventListener('click', () => {
         document.getElementById('editNome').value = nome;
         document.getElementById('editCidade').value = cidade;
         document.getElementById('editPais').value = pais;
         document.getElementById('editImageUrl').value = imageUrl;
-        openModal();
+        editId = _id;
+        openModal()
+
     });
-
-    const salvar = document.querySelector('.salvar');
-
-
-
+    
 
     const deletebutton = restElementos('button', '', '<span class="material-symbols-outlined">delete</span > ')
-    
-    deletebutton.addEventListener( 'click', () => deleteturismo(_id));
-    
-    
+
+    deletebutton.addEventListener('click', () => deleteturismo(_id));
+
+
 
     div1.appendChild(editbutton)
     div1.appendChild(deletebutton)
@@ -137,9 +142,9 @@ const createTurismo =  (rest) => {
 
 const todosApi = async () => {
     const busca = await fetchTurismo();
-    section.innerHTML= '';
+    section.innerHTML = '';
 
-    busca.forEach((rest) =>{
+    busca.forEach((rest) => {
         const criaDiv = createTurismo(rest);
         section.appendChild(criaDiv);
     })
