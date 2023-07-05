@@ -1,17 +1,18 @@
-let url = 'https://api-back-kappa.vercel.app/turismo'
+const url = 'https://api-back-kappa.vercel.app/turismo';
+const section = document.querySelector('.div');
+const cadastro = document.querySelector('.cadastrar');
+const nome1 = document.querySelector('.nome');
+const cidade1 = document.querySelector('.cidade');
+const pais1 = document.querySelector('.pais');
+const imageUrl1 = document.querySelector('.image');
 
-const section = document.querySelector('.div')
-const cadastro = document.querySelector('.cadastrar')
-const nome1 = document.querySelector('.nome')
-const cidade1 = document.querySelector('.cidade')
-const pais1 = document.querySelector('.pais')
-const imageUrl1 = document.querySelector('.image')
+let editId;
+
 const fetchTurismo = async () => {
-    const restaurante = await fetch(url)
-    const resposta = await restaurante.json()
-    // console.log(resposta.data)
-    return resposta.data
-}
+    const restaurante = await fetch(url);
+    const resposta = await restaurante.json();
+    return resposta.data;
+};
 
 const cadastrar = async (event) => {
     event.preventDefault();
@@ -28,59 +29,59 @@ const cadastrar = async (event) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(turismo)
     });
-    todosApi()
-    nome1.value = '',
-        cidade1.value = '',
-        imageUrl1.value = '',
-        pais1.value = ''
+
+    todosApi();
+
+    nome1.value = '';
+    cidade1.value = '';
+    imageUrl1.value = '';
+    pais1.value = '';
 };
 
 const editarTurismo = async ({ _id, nome, cidade, pais, imageUrl }) => {
-
-    await fetch(`https://api-back-kappa.vercel.app/turismo/${_id}`, {
+    await fetch(`${url}/${_id}`, {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nome, cidade, pais, imageUrl })
-    })
-    todosApi();
+    });
 
+    todosApi();
 };
 
-
 const deleteturismo = async (_id) => {
-    await fetch(`https://api-back-kappa.vercel.app/turismo/${_id}`, {
-        method: 'delete',
-    })
-    todosApi();
+    await fetch(`${url}/${_id}`, {
+        method: 'delete'
+    });
 
-}
+    todosApi();
+};
 
 const restElementos = (tag, innerText = '', innerHTML = '') => {
     const elemento = document.createElement(tag);
+
     if (innerText) {
         elemento.innerText = innerText;
     }
+
     if (innerHTML) {
         elemento.innerHTML = innerHTML;
     }
+
     return elemento;
-}
-
-
-let editId;
-
-
-
+};
 
 const createTurismo = (rest) => {
     const { _id, nome, cidade, pais, imageUrl } = rest;
     const div = restElementos('div');
-    div.className = "card";
+    div.className = 'card';
+
     const titulo = restElementos('h3', `Nome: ${nome}`);
-    const image = restElementos('img', imageUrl);
+    const image = restElementos('img', '', '');
     image.src = imageUrl;
+
     const cidade1 = restElementos('p', `Cidade: ${cidade}`);
     const pais1 = restElementos('p', `Pais: ${pais}`);
+
     const div1 = restElementos('div');
     div1.className = 'botao';
 
@@ -89,11 +90,10 @@ const createTurismo = (rest) => {
         modal.style.display = 'none';
     };
 
-    const editbutton = restElementos('button', '', '<span class="material-symbols-outlined">edit</span > ')
-
+    const editbutton = restElementos('button', '', '<span class="material-symbols-outlined">edit</span > ');
     const submit = document.querySelector('#editForm');
 
-    submit.addEventListener("submit", (event) => {
+    submit.addEventListener('submit', (event) => {
         event.preventDefault();
 
         const nome = document.querySelector('#editNome').value;
@@ -101,9 +101,8 @@ const createTurismo = (rest) => {
         const pais = document.querySelector('#editPais').value;
         const imageUrl = document.querySelector('#editImageUrl').value;
 
-        editarTurismo({ _id:editId, nome: nome, cidade: cidade, imageUrl: imageUrl, pais: pais });
-        fecharModal()
-
+        editarTurismo({ _id: editId, nome, cidade, imageUrl, pais });
+        fecharModal();
     });
 
     const openModal = () => {
@@ -111,34 +110,29 @@ const createTurismo = (rest) => {
         modal.style.display = 'block';
     };
 
-    
     editbutton.addEventListener('click', () => {
         document.getElementById('editNome').value = nome;
         document.getElementById('editCidade').value = cidade;
         document.getElementById('editPais').value = pais;
         document.getElementById('editImageUrl').value = imageUrl;
         editId = _id;
-        openModal()
-
+        openModal();
     });
-    
 
-    const deletebutton = restElementos('button', '', '<span class="material-symbols-outlined">delete</span > ')
+    const deletebutton = restElementos('button', '', '<span class="material-symbols-outlined">delete</span > ');
 
     deletebutton.addEventListener('click', () => deleteturismo(_id));
 
-
-
-    div1.appendChild(editbutton)
-    div1.appendChild(deletebutton)
+    div1.appendChild(editbutton);
+    div1.appendChild(deletebutton);
     div.appendChild(titulo);
     div.appendChild(image);
     div.appendChild(cidade1);
     div.appendChild(pais1);
     div.appendChild(div1);
-    return div;
-}
 
+    return div;
+};
 
 const todosApi = async () => {
     const busca = await fetchTurismo();
@@ -147,10 +141,9 @@ const todosApi = async () => {
     busca.forEach((rest) => {
         const criaDiv = createTurismo(rest);
         section.appendChild(criaDiv);
-    })
+    });
+};
 
-}
+cadastro.addEventListener('submit', cadastrar);
 
-cadastro.addEventListener('submit', cadastrar)
-
-todosApi()
+todosApi();
