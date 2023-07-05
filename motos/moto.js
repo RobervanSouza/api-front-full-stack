@@ -1,9 +1,9 @@
-const url = 'https://api-back-kappa.vercel.app/hotel';
+const url = 'https://api-back-kappa.vercel.app/moto';
 const section = document.querySelector('.div');
 const cadastro = document.querySelector('.cadastrar');
 const nome1 = document.querySelector('.nome');
-const cidade1 = document.querySelector('.cidade');
-const pais1 = document.querySelector('.pais');
+const marca1 = document.querySelector('.marca');
+const ano1 = document.querySelector('.ano');
 const imageUrl1 = document.querySelector('.image');
 
 let editId;
@@ -19,9 +19,9 @@ const cadastrar = async (event) => {
 
     const turismo = {
         nome: nome1.value,
-        cidade: cidade1.value,
+        marca: marca1.value,
         imageUrl: imageUrl1.value,
-        pais: pais1.value
+        ano: ano1.value
     };
 
     await fetch(url, {
@@ -33,16 +33,16 @@ const cadastrar = async (event) => {
     todosApi();
 
     nome1.value = '';
-    cidade1.value = '';
+    marca1.value = '';
     imageUrl1.value = '';
-    pais1.value = '';
+    ano1.value = '';
 };
 
-const editarTurismo = async ({ _id, nome, cidade, pais, imageUrl }) => {
+const editarTurismo = async ({ _id, nome, marca, ano, imageUrl }) => {
     await fetch(`${url}/${_id}`, {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, cidade, pais, imageUrl })
+        body: JSON.stringify({ nome, marca, ano, imageUrl })
     });
 
     todosApi();
@@ -71,7 +71,7 @@ const restElementos = (tag, innerText = '', innerHTML = '') => {
 };
 
 const createTurismo = (rest) => {
-    const { _id, nome, cidade, pais, imageUrl } = rest;
+    const { _id, nome, marca, ano, imageUrl } = rest;
     const div = restElementos('div');
     div.className = 'card';
 
@@ -79,8 +79,8 @@ const createTurismo = (rest) => {
     const image = restElementos('img', '', '');
     image.src = imageUrl;
 
-    const cidade1 = restElementos('p', `Cidade: ${cidade}`);
-    const pais1 = restElementos('p', `Pais: ${pais}`);
+    const marca1 = restElementos('p', `Marca:  ${marca}`);
+    const ano1 = restElementos('p', `Ano:  ${ano}`);
 
     const div1 = restElementos('div');
     div1.className = 'botao';
@@ -97,11 +97,11 @@ const createTurismo = (rest) => {
         event.preventDefault();
 
         const nome = document.querySelector('#editNome').value;
-        const cidade = document.querySelector('#editCidade').value;
-        const pais = document.querySelector('#editPais').value;
+        const marca = document.querySelector('#editMarca').value;
+        const ano = document.querySelector('#editAno').value;
         const imageUrl = document.querySelector('#editImageUrl').value;
 
-        editarTurismo({ _id: editId, nome, cidade, imageUrl, pais });
+        editarTurismo({ _id: editId, nome, marca, imageUrl, ano });
         fecharModal();
     });
 
@@ -112,8 +112,8 @@ const createTurismo = (rest) => {
 
     editbutton.addEventListener('click', () => {
         document.getElementById('editNome').value = nome;
-        document.getElementById('editCidade').value = cidade;
-        document.getElementById('editPais').value = pais;
+        document.getElementById('editMarca').value = marca;
+        document.getElementById('editAno').value = ano;
         document.getElementById('editImageUrl').value = imageUrl;
         editId = _id;
         openModal();
@@ -127,8 +127,8 @@ const createTurismo = (rest) => {
     div1.appendChild(deletebutton);
     div.appendChild(titulo);
     div.appendChild(image);
-    div.appendChild(cidade1);
-    div.appendChild(pais1);
+    div.appendChild(marca1);
+    div.appendChild(ano1);
     div.appendChild(div1);
 
     return div;

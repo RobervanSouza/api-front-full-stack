@@ -44,7 +44,7 @@
                         placeholder="   Digite o nome do modelo/marca" required>
 
                     <label for="ano">Ano:</label>
-                    <input type="text" id="ano" name="ano" class="ano" placeholder="   Digite o ano do Carro"
+                    <input type="text" id="ano" name="ano" class="ano" placeholder="   Digite o ano do Carro" pattern="[0-9]+" title="Apenas números são aceitos"
                         required>
 
                     <label for="imageUrl">URL da imagem:</label>
@@ -70,7 +70,7 @@
                     </div>
                     <div class="form-group">
                         <label for="editAno">Ano: </label>
-                        <input type="text" id="editAno" name="editAno" required>
+                        <input type="text" id="editAno" name="editAno" pattern="[0-9]+" title="Apenas números são aceitos"   required>
                     </div>
                     <div class="form-group">
                         <label for="editImageUrl">URL da Imagem:</label>

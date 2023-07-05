@@ -36,16 +36,15 @@
             <div class="card-cadastrar">
                 <form class="form-cadastrar" action="#">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" placeholder="  Digite nome do ponto Turístico "
-                        class="nome" required>
-
-                    <label for="cidade">Cidade:</label>
-                    <input type="text" id="cidade" name="cidade" class="cidade"
-                        placeholder="   Digite o nome do Estado/Cidade" required>
-
-                    <label for="pais">País:</label>
-                    <input type="text" id="pais" name="pais" class="pais" placeholder="   Digite o nome do País"
+                    <input type="text" id="nome" name="nome" placeholder="  Digite nome da moto " class="nome"
                         required>
+
+                    <label for="marca">Marca:</label>
+                    <input type="text" id="marca" name="marca" class="marca"
+                        placeholder="   Digite o nome do modelo/marca" required>
+
+                    <label for="ano">Ano:</label>
+                    <input type="text" id="ano" name="ano" class="ano" pattern="[0-9]+" title="Apenas números são aceitos" placeholder="   Digite o ano do Carro" required>
 
                     <label for="imageUrl">URL da imagem:</label>
                     <input type="text" id="imageUrl" name="imageUrl" class="image"
@@ -58,19 +57,19 @@
 
         <div class="modal">
             <div class="modal-content">
-                <h2>Editar Ponto Turístico</h2>
+                <h2>Editar Hotel</h2>
                 <form id="editForm">
                     <div class="form-group">
-                        <label for="editNome">Nome:</label>
+                        <label for="editNome">Nome: </label>
                         <input type="text" id="editNome" name="editNome" required>
                     </div>
                     <div class="form-group">
-                        <label for="editCidade">Cidade:</label>
-                        <input type="text" id="editCidade" name="editCidade" required>
+                        <label for="editMarca">Marca: </label>
+                        <input type="text" id="editMarca" name="editmarca" required>
                     </div>
                     <div class="form-group">
-                        <label for="editPais">País:</label>
-                        <input type="text" id="editPais" name="editPais" required>
+                        <label for="editAno">Ano: </label>
+                        <input type="text" id="editAno" pattern="[0-9]+" title="Apenas números são aceitos" name="editAno" required>
                     </div>
                     <div class="form-group">
                         <label for="editImageUrl">URL da Imagem:</label>
@@ -108,7 +107,7 @@
         </section>
     </main>
     <script src="/index.js"></script>
-    <script src="/turismo/turismo.js"></script>
+    <script src="/motos/moto.js"></script>
 </body>
 
 </html>
