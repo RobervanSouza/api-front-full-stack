@@ -79,8 +79,8 @@ const createTurismo = (rest) => {
     const image = restElementos('img', '', '');
     image.src = imageUrl;
 
-    const raca1 = restElementos('p', `Raca:  ${raca}`);
-    const descricao1 = restElementos('p', `Descricao:  ${descricao}`);
+    const raca1 = restElementos('p', `Raça:  ${raca}`);
+    const descricao1 = restElementos('p', `Descrição:  ${descricao}`);
 
     const div1 = restElementos('div');
     div1.className = 'botao';
