@@ -1,5 +1,5 @@
 
-# Minha API Dinâmica
+# 🚀 Minha API Dinâmica
 
 Uma API dinâmica desenvolvida para cadastrar, editar e excluir itens de diferentes categorias. Esse projeto permite que você crie modelos personalizados para cada tipo de item que deseja cadastrar, sem a necessidade de modificar o backend. Com essa API, você tem controle total sobre os dados e pode facilmente gerenciá-los por meio de uma interface amigável.
 
