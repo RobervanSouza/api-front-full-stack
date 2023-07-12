@@ -75,12 +75,12 @@ const createTurismo = (rest) => {
     const div = restElementos('div');
     div.className = 'card';
 
-    const titulo = restElementos('h3', `Nome: ${nome}`);
+    const titulo = restElementos('h3', ` ${nome}`);
     const image = restElementos('img', '', '');
     image.src = imageUrl;
 
-    const genero1 = restElementos('p', `Gênero:  ${genero}`);
-    const ano1 = restElementos('p', `Ano:  ${ano}`);
+    const genero1 = restElementos('p', ` ${genero}`);
+    const ano1 = restElementos('p', `  ${ano}`);
 
     const div1 = restElementos('div');
     div1.className = 'botao';
