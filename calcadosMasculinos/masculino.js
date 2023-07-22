@@ -15,11 +15,8 @@ const origem1 = document.querySelector('.origem');
 const desconto1 = document.querySelector('.desconto');
 const garantia1 = document.querySelector('.garantia');
 const indicacao1 = document.querySelector('.indicacao');
+const parcelas1 = document.querySelector('.parcelas');
 const checkbox = document.querySelector('#lancamento');
-
-
-
-  
 
 const fetchTurismo = async () => {
     const restaurante = await fetch(url);
@@ -47,6 +44,7 @@ const cadastrar = async (event) => {
         desconto: desconto1.value,
         garantia: garantia1.value,
         indicacao: indicacao1.value,
+        parcelas: parcelas1.value,
 
 
     };
@@ -71,13 +69,14 @@ const cadastrar = async (event) => {
     desconto1.value = '';
     garantia1.value = '';
     indicacao1.value = '';
+    parcelas1.value = '';
 };
 
-const editarTurismo = async ({ _id, nome, imageUrl, descricao, preco, tamanho, cores, lancamento, fechamento, origem, desconto, garantia, indicacao }) => {
+const editarTurismo = async ({ _id, nome, imageUrl, descricao, preco, tamanho, cores, lancamento, fechamento, origem, desconto, garantia, indicacao, parcelas }) => {
     await fetch(`${url}/${_id}`, {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, imageUrl, descricao, preco, tamanho, cores, lancamento, fechamento, origem, desconto, indicacao, garantia })
+        body: JSON.stringify({ nome, imageUrl, descricao, preco, tamanho, cores, lancamento, fechamento, origem, desconto, indicacao, garantia, parcelas, })
     });
 
     todosApi();
@@ -106,7 +105,7 @@ const restElementos = (tag, innerText = '', innerHTML = '') => {
 };
 
 const createTurismo = (rest) => {
-    const { _id, nome, imageUrl, descricao, preco, tamanho, cores, lancamento, fechamento, origem, desconto, indicacao, garantia } = rest;
+    const { _id, nome, imageUrl, descricao, preco, tamanho, cores, lancamento, parcelas, fechamento, origem, desconto, indicacao, garantia } = rest;
     const div = restElementos('div');
     div.className = 'card';
 
@@ -124,6 +123,7 @@ const createTurismo = (rest) => {
     const desconto1 = restElementos('p', `Desconto:  ${desconto}`);
     const indicacao1 = restElementos('p', `Indicação:  ${indicacao}`);
     const garantia1 = restElementos('p', `Garantia:  ${garantia}`);
+    const parcelas1 = restElementos('p', `Parcelas:  ${parcelas}`);
 
     const div1 = restElementos('div');
     div1.className = 'botao';
@@ -152,9 +152,10 @@ const createTurismo = (rest) => {
         const desconto = document.querySelector('#editDesconto').value;
         const garantia = document.querySelector('#editGarantia').value;
         const indicacao = document.querySelector('#editIndicacao').value;
+        const parcelas = document.querySelector('#editParcelas').value;
 
 
-        editarTurismo({ _id: editId, nome, imageUrl, descricao, preco, tamanho, cores, lancamento, fechamento, origem, desconto, indicacao, garantia });
+        editarTurismo({ _id: editId, nome, imageUrl, descricao, preco, tamanho, cores, lancamento, fechamento, origem, desconto, indicacao, garantia, parcelas });
         fecharModal();
     });
 
@@ -175,6 +176,7 @@ const createTurismo = (rest) => {
         document.getElementById('editDesconto').value = desconto;
         document.getElementById('editGarantia').value = garantia;
         document.getElementById('editIndicacao').value = indicacao;
+        document.getElementById('editParcelas').value = parcelas;
 
         editId = _id;
         openModal();
@@ -198,6 +200,7 @@ const createTurismo = (rest) => {
     div.appendChild(desconto1);
     div.appendChild(garantia1);
     div.appendChild(indicacao1);
+    div.appendChild(parcelas1);
     div.appendChild(div1);
 
     return div;
