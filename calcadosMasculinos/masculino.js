@@ -9,15 +9,17 @@ const preco1 = document.querySelector('.preco');
 const imageUrl1 = document.querySelector('.imagem');
 const tamanho1 = document.querySelector('.tamanho');
 const cores1 = document.querySelector('.cores');
-const linha1 = document.querySelector('.linha');
+const lancamento1 = document.querySelector('.lancamento');
 const fechamento1 = document.querySelector('.fechamento');
 const origem1 = document.querySelector('.origem');
 const desconto1 = document.querySelector('.desconto');
 const garantia1 = document.querySelector('.garantia');
 const indicacao1 = document.querySelector('.indicacao');
+const checkbox = document.querySelector('#lancamento');
 
 
-let editId;
+
+  
 
 const fetchTurismo = async () => {
     const restaurante = await fetch(url);
@@ -28,6 +30,10 @@ const fetchTurismo = async () => {
 const cadastrar = async (event) => {
     event.preventDefault();
 
+   
+    const isChecked = checkbox.checked ? true : false;
+
+
     const turismo = {
         nome: nome1.value,
         imageUrl: imageUrl1.value,
@@ -35,7 +41,7 @@ const cadastrar = async (event) => {
         preco: preco1.value,
         tamanho: tamanho1.value,
         cores: cores1.value,
-        linha: linha1.value,
+        lancamento: isChecked,
         fechamento: fechamento1.value,
         origem: origem1.value,
         desconto: desconto1.value,
@@ -59,7 +65,7 @@ const cadastrar = async (event) => {
     preco1.value = '';
     tamanho1.value = '';
     cores1.value = '';
-    linha1.value = '';
+    lancamento1.checked = false;
     fechamento1.value = '';
     origem1.value = '';
     desconto1.value = '';
@@ -67,11 +73,11 @@ const cadastrar = async (event) => {
     indicacao1.value = '';
 };
 
-const editarTurismo = async ({ _id, nome, imageUrl, descricao, preco, tamanho, cores, linha, fechamento, origem, desconto, garantia, indicacao }) => {
+const editarTurismo = async ({ _id, nome, imageUrl, descricao, preco, tamanho, cores, lancamento, fechamento, origem, desconto, garantia, indicacao }) => {
     await fetch(`${url}/${_id}`, {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, imageUrl, descricao, preco, tamanho, cores, linha, fechamento, origem, desconto, indicacao, garantia })
+        body: JSON.stringify({ nome, imageUrl, descricao, preco, tamanho, cores, lancamento, fechamento, origem, desconto, indicacao, garantia })
     });
 
     todosApi();
@@ -100,7 +106,7 @@ const restElementos = (tag, innerText = '', innerHTML = '') => {
 };
 
 const createTurismo = (rest) => {
-    const { _id, nome, imageUrl, descricao, preco, tamanho, cores, linha, fechamento, origem, desconto, indicacao, garantia } = rest;
+    const { _id, nome, imageUrl, descricao, preco, tamanho, cores, lancamento, fechamento, origem, desconto, indicacao, garantia } = rest;
     const div = restElementos('div');
     div.className = 'card';
 
@@ -111,7 +117,7 @@ const createTurismo = (rest) => {
     const preco1 = restElementos('p', `Preço:  ${preco}`);
     const descricao1 = restElementos('p', `Descrição:  ${descricao}`);
     const tamanho1 = restElementos('p', `Tamanho:  ${tamanho}`);
-    const linha1 = restElementos('p', `Linha:  ${linha}`);
+    const lancamento1 = restElementos('p', `Lançamento:  ${lancamento}`);
     const cores1 = restElementos('p', `Cores:  ${cores}`);
     const fechamento1 = restElementos('p', `Fechamento:  ${fechamento}`);
     const origem1 = restElementos('p', `Origem:  ${origem}`);
@@ -139,7 +145,7 @@ const createTurismo = (rest) => {
         const preco = parseFloat(document.querySelector('#editPreco').value);
         const tamanho = document.querySelector('#editTamanho').value.split(',').map(item => item.trim());
         const cores = document.querySelector('#editCores').value.split(',').map(item => item.trim());
-        const linha = document.querySelector('#editLinha').value;
+        const lancamento = document.querySelector('#editLancamento').checked;
 
         const fechamento = document.querySelector('#editFechamento').value;
         const origem = document.querySelector('#editOrigem').value;
@@ -148,7 +154,7 @@ const createTurismo = (rest) => {
         const indicacao = document.querySelector('#editIndicacao').value;
 
 
-        editarTurismo({ _id: editId, nome, imageUrl, descricao, preco, tamanho, cores, linha, fechamento, origem, desconto, indicacao, garantia });
+        editarTurismo({ _id: editId, nome, imageUrl, descricao, preco, tamanho, cores, lancamento, fechamento, origem, desconto, indicacao, garantia });
         fecharModal();
     });
 
@@ -163,7 +169,7 @@ const createTurismo = (rest) => {
         document.getElementById('editPreco').value = preco;
         document.getElementById('editTamanho').value = tamanho;
         document.getElementById('editCores').value = cores;
-        document.getElementById('editLinha').value = linha;
+        document.getElementById('editLancamento').value = lancamento;
         document.getElementById('editFechamento').value = fechamento;
         document.getElementById('editOrigem').value = origem;
         document.getElementById('editDesconto').value = desconto;
@@ -186,7 +192,7 @@ const createTurismo = (rest) => {
     div.appendChild(preco1);
     div.appendChild(tamanho1);
     div.appendChild(cores1);
-    div.appendChild(linha1);
+    div.appendChild(lancamento1);
     div.appendChild(fechamento1);
     div.appendChild(origem1);
     div.appendChild(desconto1);

@@ -39,53 +39,55 @@
             <div class="card-cadastrar">
                 <form class="form-cadastrar" action="/cadastrar" method="POST">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" placeholder="Digite o nome do calçado" class="nome" required>
-    
+                    <input type="text" id="nome" name="nome" placeholder="Digite o nome do calçado" class="nome"
+                        required>
+
                     <label for="imagem">URL da imagem:</label>
                     <input type="text" id="imagem" name="imagem" class="imagem" placeholder="Coloque a URL da imagem"
                         required>
-    
+
                     <label for="descricao">Descrição:</label>
-                    <textarea id="descricao" name="descricao" class="descricao" placeholder="Digite a descrição do calçado"
-                        required></textarea>
-    
+                    <textarea id="descricao" name="descricao" class="descricao"
+                        placeholder="Digite a descrição do calçado" required></textarea>
+
                     <label for="preco">Preço:</label>
                     <input type="number" id="preco" step="any" name="preco" class="preco" placeholder="Digite o preço"
                         required>
-    
+
                     <label for="desconto">Desconto:</label>
                     <input type="number" id="desconto" step="any" name="desconto" class="desconto"
                         placeholder="Digite o preço" required>
-    
+
                     <label for="tamanho">Tamanho:</label>
-                    <input type="text" id="tamanho" name="tamanho" class="tamanho" placeholder="Digite o tamanho" required>
-    
+                    <input type="text" id="tamanho" name="tamanho" class="tamanho" placeholder="Digite o tamanho"
+                        required>
+
                     <label for="cores">Cores (separadas por vírgula):</label>
                     <input type="text" id="cores" name="cores" class="cores" placeholder="Digite as cores" required>
-    
-                    <label for="linha">Linha:</label>
-                    <input type="text" id="linha" name="linha" class="linha" required>
-    
+
+                    <label for="lancamento">Lançamento:</label>
+                    <input type="checkbox" id="lancamento" name="lancamento">
+
                     <label for="fechamento">Fechamento:</label>
-                    <input type="text" id="fechamento" name="fechamento" class="fechamento" required>
-    
+                    <input type="text" id="fechamento" name="fechamento" class="fechamento" placeholder="Qual o tipo de fechamento?"  required>
+
                     <label for="origem">Origem:</label>
-                    <input type="text" id="origem" name="origem" class="origem" required>
-    
-    
+                    <input type="text" id="origem" name="origem" class="origem" required placeholder=" Qual pais foi produzido?" >
+
+
                     <label for="garantia">Garantia do Fabricante:</label>
-                    <input type="text" id="garantia" name="garantia" class="garantia" required>
-    
+                    <input type="text" id="garantia" name="garantia" class="garantia" required placeholder="Qual a garantia?">
+
                     <label for="indicacao">Indicado para:</label>
-                    <input type="text" id="indicacao" name="indicacao" class="indicacao" required>
-    
-    
+                    <input type="text" id="indicacao" name="indicacao" class="indicacao" placeholder="Quanto tempo de garantia?" required>
+
+
                     <button class="button-cadastrar" type="submit">Cadastrar</button>
                 </form>
             </div>
         </section>
-    
-    
+
+
         <div class="modal">
             <div class="modal-content">
                 <h2>Editar Calçado</h2>
@@ -119,9 +121,12 @@
                         <input type="text" id="editCores" name="editCores" required>
                     </div>
                     <div class="form-group">
-                        <label for="editLinha">Linha:</label>
-                        <input type="text" id="editLinha" name="editLinha" required>
+                        <label for="editLancamento">Lançamento:</label>
+                        <input type="checkbox" id="editLancamento" name="editLancamento" >
                     </div>
+
+
+
                     <div class="form-group">
                         <label for="editFechamento">Fechamento:</label>
                         <input type="text" id="editFechamento" name="editFechamento" required>
@@ -138,21 +143,21 @@
                         <label for="editIndicacao">Indicado para:</label>
                         <input type="text" id="editIndicacao" name="editIndicacao" required>
                     </div>
-    
+
                     <div class="button-group">
                         <button type="submit" class="salvar">Salvar</button>
                     </div>
                 </form>
             </div>
         </div>
-    
-    
+
+
         <section class="itens-cadastrados">
-    
+
             <div class="div">
-    
+
             </div>
-    
+
         </section>
     </main>
     <script src="/index.js"></script>
