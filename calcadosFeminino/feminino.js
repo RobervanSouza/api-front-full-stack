@@ -1,4 +1,5 @@
 const url = 'https://api-back-kappa.vercel.app/calcadoFeminino';
+
 const section = document.querySelector('.div');
 const cadastro = document.querySelector('.cadastrar');
 const nome1 = document.querySelector('.nome');
@@ -10,7 +11,7 @@ const cores1 = document.querySelector('.cores');
 const linha1 = document.querySelector('.linha');
 const fechamento1 = document.querySelector('.fechamento');
 const origem1 = document.querySelector('.origem');
-const tecnologia1 = document.querySelector('.tecnologia');
+const desconto1 = document.querySelector('.desconto');
 const garantia1 = document.querySelector('.garantia');
 const indicacao1 = document.querySelector('.indicacao');
 
@@ -36,11 +37,11 @@ const cadastrar = async (event) => {
         linha: linha1.value,
         fechamento: fechamento1.value,
         origem: origem1.value,
-        tecnologia: tecnologia1.value,
+        desconto: desconto1.value,
         garantia: garantia1.value,
-        indicacao: indicacao1.value, 
-        
-        
+        indicacao: indicacao1.value,
+
+
     };
 
     await fetch(url, {
@@ -60,16 +61,16 @@ const cadastrar = async (event) => {
     linha1.value = '';
     fechamento1.value = '';
     origem1.value = '';
-    tecnologia1.value = '';
+    desconto1.value = '';
     garantia1.value = '';
     indicacao1.value = '';
 };
 
-const editarTurismo = async ({ _id, nome, imageUrl, descricao, preco, tamanho, cores, linha, fechamento, origem, tecnologia, garantia, indicacao }) => {
+const editarTurismo = async ({ _id, nome, imageUrl, descricao, preco, tamanho, cores, linha, fechamento, origem, desconto, garantia, indicacao }) => {
     await fetch(`${url}/${_id}`, {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, imageUrl, descricao, preco, tamanho, cores, linha, fechamento, origem, tecnologia, indicacao, garantia})
+        body: JSON.stringify({ nome, imageUrl, descricao, preco, tamanho, cores, linha, fechamento, origem, desconto, indicacao, garantia })
     });
 
     todosApi();
@@ -98,7 +99,7 @@ const restElementos = (tag, innerText = '', innerHTML = '') => {
 };
 
 const createTurismo = (rest) => {
-    const { _id, nome, imageUrl, descricao, preco, tamanho, cores, linha, fechamento, origem, tecnologia, indicacao, garantia  } = rest;
+    const { _id, nome, imageUrl, descricao, preco, tamanho, cores, linha, fechamento, origem, desconto, indicacao, garantia } = rest;
     const div = restElementos('div');
     div.className = 'card';
 
@@ -113,7 +114,7 @@ const createTurismo = (rest) => {
     const cores1 = restElementos('p', `Cores:  ${cores}`);
     const fechamento1 = restElementos('p', `Fechamento:  ${fechamento}`);
     const origem1 = restElementos('p', `Origem:  ${origem}`);
-    const tecnologia1 = restElementos('p', `Tecnologia:  ${tecnologia}`);
+    const desconto1 = restElementos('p', `Desconto:  ${desconto}`);
     const indicacao1 = restElementos('p', `Indicação:  ${indicacao}`);
     const garantia1 = restElementos('p', `Garantia:  ${garantia}`);
 
@@ -133,20 +134,20 @@ const createTurismo = (rest) => {
         const nome = document.querySelector('#editNome').value;
         const imageUrl = document.querySelector('#editImagemUrl').value;
         const descricao = document.querySelector('#editDescricao').value;
-   
+
         const preco = parseFloat(document.querySelector('#editPreco').value);
         const tamanho = document.querySelector('#editTamanho').value.split(',').map(item => item.trim());
         const cores = document.querySelector('#editCores').value.split(',').map(item => item.trim());
         const linha = document.querySelector('#editLinha').value;
-       
+
         const fechamento = document.querySelector('#editFechamento').value;
         const origem = document.querySelector('#editOrigem').value;
-        const tecnologia = document.querySelector('#editTecnologia').value;
+        const desconto = document.querySelector('#editDesconto').value;
         const garantia = document.querySelector('#editGarantia').value;
         const indicacao = document.querySelector('#editIndicacao').value;
-   
 
-        editarTurismo({ _id: editId, nome, imageUrl, descricao, preco, tamanho, cores, linha, fechamento, origem, tecnologia, indicacao, garantia });
+
+        editarTurismo({ _id: editId, nome, imageUrl, descricao, preco, tamanho, cores, linha, fechamento, origem, desconto, indicacao, garantia });
         fecharModal();
     });
 
@@ -164,10 +165,10 @@ const createTurismo = (rest) => {
         document.getElementById('editLinha').value = linha;
         document.getElementById('editFechamento').value = fechamento;
         document.getElementById('editOrigem').value = origem;
-        document.getElementById('editTecnologia').value = tecnologia;
+        document.getElementById('editDesconto').value = desconto;
         document.getElementById('editGarantia').value = garantia;
         document.getElementById('editIndicacao').value = indicacao;
-        
+
         editId = _id;
         openModal();
     });
@@ -187,7 +188,7 @@ const createTurismo = (rest) => {
     div.appendChild(linha1);
     div.appendChild(fechamento1);
     div.appendChild(origem1);
-    div.appendChild(tecnologia1);
+    div.appendChild(desconto1);
     div.appendChild(garantia1);
     div.appendChild(indicacao1);
     div.appendChild(div1);
