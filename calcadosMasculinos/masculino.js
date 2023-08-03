@@ -118,7 +118,7 @@ const createTurismo = (rest) => {
     
 
     
-    let currentIndex = 0; // Adicione a declaração da variável currentIndex e inicialize com 0
+    let currentIndex = 0; 
 
     const imageContainer = restElementos('div');
     imageContainer.className = 'image-container';
@@ -128,27 +128,23 @@ const createTurismo = (rest) => {
 
     imageContainer.appendChild(centralImage);
 
-    const sideImages = []; // Array para armazenar as imagens laterais
+    const sideImages = []; 
 
     imageUrl.slice(1).forEach((imageUrl, index) => {
         const sideImage = restElementos('img', '', '');
         sideImage.src = imageUrl;
         sideImage.addEventListener('click', () => {
-            centralImage.src = sideImages[ index ].src; // Atualiza a imagem central com a imagem clicada
+            centralImage.src = sideImages[ index ].src; 
         });
 
         sideImages.push(sideImage);
         imageContainer.appendChild(sideImage);
     });
 
-    const changeImageButton = restElementos('button', 'Trocar Imagem');
-    changeImageButton.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % imageUrl.length;
-        centralImage.src = imageUrl[ currentIndex ];
-    });
+  
 
     div.appendChild(imageContainer);
-    div.appendChild(changeImageButton);
+   
   // ...
 
 
