@@ -24,6 +24,10 @@ const fetchTurismo = async () => {
     return resposta.data;
 };
 
+
+const imageUrlArray = imageUrl1.value.split(",").map((url) => url.trim());
+
+
 const cadastrar = async (event) => {
     event.preventDefault();
 
@@ -33,7 +37,7 @@ const cadastrar = async (event) => {
 
     const turismo = {
         nome: nome1.value,
-        imageUrl: imageUrl1.value,
+        imageUrl: imageUrlArray,
         descricao: descricao1.value,
         preco: preco1.value,
         tamanho: tamanho1.value,
@@ -104,14 +108,72 @@ const restElementos = (tag, innerText = '', innerHTML = '') => {
     return elemento;
 };
 
+
 const createTurismo = (rest) => {
     const { _id, nome, imageUrl, descricao, preco, tamanho, cores, lancamento, parcelas, fechamento, origem, desconto, indicacao, garantia } = rest;
     const div = restElementos('div');
     div.className = 'card';
 
     const titulo = restElementos('h3', `Nome: ${nome}`);
-    const image = restElementos('img', '', '');
-    image.src = imageUrl;
+    
+
+    
+    let currentIndex = 0; // Adicione a declaração da variável currentIndex e inicialize com 0
+
+    const imageContainer = restElementos('div');
+    imageContainer.className = 'image-container';
+
+    const centralImage = restElementos('img', '', '');
+    centralImage.src = imageUrl[ 0 ];
+
+    imageContainer.appendChild(centralImage);
+
+    const sideImages = []; // Array para armazenar as imagens laterais
+
+    imageUrl.slice(1).forEach((imageUrl, index) => {
+        const sideImage = restElementos('img', '', '');
+        sideImage.src = imageUrl;
+        sideImage.addEventListener('click', () => {
+            centralImage.src = sideImages[ index ].src; // Atualiza a imagem central com a imagem clicada
+        });
+
+        sideImages.push(sideImage);
+        imageContainer.appendChild(sideImage);
+    });
+
+    const changeImageButton = restElementos('button', 'Trocar Imagem');
+    changeImageButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % imageUrl.length;
+        centralImage.src = imageUrl[ currentIndex ];
+    });
+
+    div.appendChild(imageContainer);
+    div.appendChild(changeImageButton);
+  // ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     const preco1 = restElementos('p', `Preço:  ${preco}`);
     const descricao1 = restElementos('p', `Descrição:  ${descricao}`);
@@ -189,7 +251,7 @@ const createTurismo = (rest) => {
     div1.appendChild(editbutton);
     div1.appendChild(deletebutton);
     div.appendChild(titulo);
-    div.appendChild(image);
+    // div.appendChild(image);
     div.appendChild(descricao1);
     div.appendChild(preco1);
     div.appendChild(tamanho1);
